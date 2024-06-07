@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>991048949420-92pp3v7jv6mla14275m8f8m08ll7b8mk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.991048949420-92pp3v7jv6mla14275m8f8m08ll7b8mk</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAzvUcR-ENpL_oOWc1PADvqp8zO7qoG3xE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>991048949420</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>lv.kool.app.koolSubscriptionsApp</string>
+	<key>PROJECT_ID</key>
+	<string>kool-app-8736b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kool-app-8736b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:991048949420:ios:9f966fd590502b43f70909</string>
+	<key>DATABASE_URL</key>
+	<string>https://kool-app-8736b-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

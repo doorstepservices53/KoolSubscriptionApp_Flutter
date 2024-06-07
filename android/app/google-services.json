@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "991048949420",
+    "firebase_url": "https://kool-app-8736b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "kool-app-8736b",
+    "storage_bucket": "kool-app-8736b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991048949420:android:c9295608778e5301f70909",
+        "android_client_info": {
+          "package_name": "lv.kool.app.kool_fuel_station"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991048949420-oqr01ocq7evhndsssqmhchmg4drt7ipr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe-Q1-q8S1lYJgnKd-P4oECR5ncWKuxlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991048949420-oqr01ocq7evhndsssqmhchmg4drt7ipr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "991048949420-4rj2tifuh3sv6te4gcoqkolocfv1qq6a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "lv.kool.app.koolFuelStation"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991048949420:android:2509bad34e58529bf70909",
+        "android_client_info": {
+          "package_name": "lv.kool.app.kool_subscriptions_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991048949420-oqr01ocq7evhndsssqmhchmg4drt7ipr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe-Q1-q8S1lYJgnKd-P4oECR5ncWKuxlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991048949420-oqr01ocq7evhndsssqmhchmg4drt7ipr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "991048949420-4rj2tifuh3sv6te4gcoqkolocfv1qq6a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "lv.kool.app.koolFuelStation"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991048949420:android:5044969b84476ec1f70909",
+        "android_client_info": {
+          "package_name": "lv.kool.kool_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991048949420-oqr01ocq7evhndsssqmhchmg4drt7ipr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe-Q1-q8S1lYJgnKd-P4oECR5ncWKuxlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991048949420-oqr01ocq7evhndsssqmhchmg4drt7ipr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "991048949420-4rj2tifuh3sv6te4gcoqkolocfv1qq6a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "lv.kool.app.koolFuelStation"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991048949420:android:3ac144a2abc588a0f70909",
+        "android_client_info": {
+          "package_name": "lv.kool.koolapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991048949420-oqr01ocq7evhndsssqmhchmg4drt7ipr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe-Q1-q8S1lYJgnKd-P4oECR5ncWKuxlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991048949420-oqr01ocq7evhndsssqmhchmg4drt7ipr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "991048949420-4rj2tifuh3sv6te4gcoqkolocfv1qq6a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "lv.kool.app.koolFuelStation"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
