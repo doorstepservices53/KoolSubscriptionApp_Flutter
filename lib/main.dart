@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'WebViewScreen.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  requestPermissions();
   runApp(const MyApp());
 }
 
@@ -32,4 +34,7 @@ class MyHttpOverrides extends HttpOverrides{
     return super.createHttpClient(context)
       ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
+}
+void requestPermissions() async {
+  await Permission.location.request();
 }

@@ -18,6 +18,8 @@ class WebViewScreen extends StatefulWidget {
 }
 
 class _WebViewScreenState extends State<WebViewScreen> {
+  final GlobalKey<ScaffoldState> scaffoldKey =
+  GlobalKey<ScaffoldState>();
   late List<ConnectivityResult> _connectionStatus = [ConnectivityResult.none];
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
@@ -34,6 +36,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
     mediaPlaybackRequiresUserGesture: false,
     cacheEnabled: true,
     javaScriptEnabled: true,
+    geolocationEnabled: true,
     useOnDownloadStart: true,
     useOnLoadResource: true,
     allowFileAccessFromFileURLs: true,
@@ -74,14 +77,11 @@ class _WebViewScreenState extends State<WebViewScreen> {
           backgroundColor: Colors.red,
           content: Text(
             'Nav atrasts/vājš internets. Lūdzu, jūsu savienojums.', style: TextStyle(color: Colors.white),),
-          duration: Duration(seconds: 2),
+          duration: Duration(seconds: 4),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
-      else {
-        inAppWebViewController.loadUrl(urlRequest: URLRequest(url: WebUri('https://app.kool.lv/kool-test/')));
 
-      }
     } on PlatformException catch (e) {
       print('Couldn\'t check connectivity status ${e.message}');
       return;
@@ -106,14 +106,11 @@ class _WebViewScreenState extends State<WebViewScreen> {
           backgroundColor: Colors.red,
           content: Text(
             'Nav atrasts/vājš internets. Lūdzu, jūsu savienojums.', style: TextStyle(color: Colors.white),),
-          duration: Duration(seconds: 2),
+          duration: Duration(seconds: 4),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
-      else {
-        inAppWebViewController.loadUrl(urlRequest: URLRequest(url: WebUri('https://app.kool.lv/kool-test/')));
 
-      }
     });
    
   }
@@ -125,87 +122,101 @@ class _WebViewScreenState extends State<WebViewScreen> {
       onWillPop: (){
         return checkGoBack();
       },
-      child: SafeArea(
-        child: LoadingOverlay(
-          isLoading: isLoading,
-          progressIndicator: const CircularProgressIndicator(),
-          color: const Color.fromRGBO(38, 205, 101, 1),
-          child: InAppWebView(
-              initialUrlRequest: URLRequest(url: WebUri(initialURL)),
-              onWebViewCreated: (InAppWebViewController c) async {
-                inAppWebViewController = c;
-                _controllerInApp.complete(inAppWebViewController);
-              },
+      child: Scaffold(
+        key:  scaffoldKey,
+        body: SafeArea(
+          child: LoadingOverlay(
+            isLoading: isLoading,
+            progressIndicator: const CircularProgressIndicator(),
+            color: const Color.fromRGBO(38, 205, 101, 1),
+            child: InAppWebView(
+                initialUrlRequest: URLRequest(url: WebUri(initialURL)),
+                onWebViewCreated: (InAppWebViewController c) async {
+                  inAppWebViewController = c;
+                  _controllerInApp.complete(inAppWebViewController);
+                },
 
-              // pullToRefreshController: pullToRefreshController,
-              initialSettings: _settings,
-              shouldOverrideUrlLoading: (c, navAction) async {
-                String url = navAction.request.url.toString();
-                if(url.contains('tel:')){
-                  launchUrl(Uri.parse('tel:+37123456789'));
-                  return NavigationActionPolicy.CANCEL;
-                }
-                else if(url.contains('mail:')){
-                  launchUrl(Uri.parse('mailto:info@kool.lv'));
-                  return NavigationActionPolicy.CANCEL;
-                }
-                else if(url.contains('maps:')){
-                  openMapsSheet(context, 'Kool Latvija', 56.973730, 24.163860);
-                  return NavigationActionPolicy.CANCEL;
-                }
-                else if(url.contains('facebook:')){
-                  launchUrl(Uri.parse('https://www.facebook.com/koollatvija/'));
-                  return NavigationActionPolicy.CANCEL;
-                }
-                else if(url.contains('insta:')){
-                  launchUrl(Uri.parse('https://www.instagram.com/kool_latvija/'));
-                  return NavigationActionPolicy.CANCEL;
-                }
-                else if(url.contains('linkedin:')){
-                  launchUrl(Uri.parse('LINKEDIN'));
-                  return NavigationActionPolicy.CANCEL;
-                }
-                else if(url.contains('retry:')){
-                  c.loadFile(assetFilePath: 'assets/index.html');
-                  return NavigationActionPolicy.CANCEL;
-                }
-                else if(url.contains('geo:')){
-                  List<dynamic> list = url.replaceAll('geo:', '').trim().split(',');
-                  openMapsSheet(context, parse(list[2]).toString(), double.parse(list[0]), double.parse(list[1]));
-                  return NavigationActionPolicy.CANCEL;
+                // pullToRefreshController: pullToRefreshController,
+                initialSettings: _settings,
+                androidOnGeolocationPermissionsShowPrompt: (InAppWebViewController controller, String origin) async {
+                  return GeolocationPermissionShowPromptResponse(
+                      origin: origin, allow: true, retain: true);
+                },
+                androidOnPermissionRequest: (InAppWebViewController controller,
+                    String origin, List<String> resources) async {
+                  return PermissionRequestResponse(
+                      resources: resources,
+                      action: PermissionRequestResponseAction.GRANT);
+                },
+                shouldOverrideUrlLoading: (c, navAction) async {
+                  String url = navAction.request.url.toString();
+                  if(url.contains('tel:')){
+                    launchUrl(Uri.parse('tel:+37123456789'));
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                  else if(url.contains('mail:')){
+                    launchUrl(Uri.parse('mailto:info@kool.lv'));
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                  else if(url.contains('maps:')){
+                    openMapsSheet(context, 'Kool Latvija', 56.973730, 24.163860);
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                  else if(url.contains('facebook:')){
+                    launchUrl(Uri.parse('https://www.facebook.com/koollatvija/'));
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                  else if(url.contains('insta:')){
+                    launchUrl(Uri.parse('https://www.instagram.com/kool_latvija/'));
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                  else if(url.contains('linkedin:')){
+                    launchUrl(Uri.parse('LINKEDIN'));
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                  else if(url.contains('retry:')){
+                    c.loadFile(assetFilePath: 'assets/index.html');
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                  else if(url.contains('geo:')){
+                    List<dynamic> list = url.replaceAll('geo:', '').trim().split(',');
+                    openMapsSheet(context, parse(list[2]).toString(), double.parse(list[0]), double.parse(list[1]));
+                    return NavigationActionPolicy.CANCEL;
+                  }
+
+                  return NavigationActionPolicy.ALLOW;
+                },
+
+                onReceivedError:(c, request, error){
+                  if(request.url.toString().contains('geo:')){
+                    List<dynamic> list = request.url.toString().replaceAll('geo:', '').trim().split(',');
+                    openMapsSheet(context, parse(list[2]).toString(), double.parse(list[0]), double.parse(list[1]));
+                    c.goBack();
+                  }
+                },
+                onReceivedHttpError:(c, request, error){
+                  if(request.url.toString().contains('geo:')){
+                    List<dynamic> list = request.url.toString().replaceAll('geo:', '').trim().split(',');
+                    openMapsSheet(context, parse(list[2]).toString(), double.parse(list[0]), double.parse(list[1]));
+                    c.goBack();
+                  }
+                },
+                onLoadStop: (c, uri){
+                  setState(() {
+                    isLoading=false;
+                  });
+                  if(uri.toString().contains('geo:')){
+                    List<dynamic> list = uri.toString().replaceAll('geo:', '').trim().split(',');
+                    openMapsSheet(context, parse(list[2]).toString(), double.parse(list[0]), double.parse(list[1]));
+                    c.goBack();
+                  }
+                },
+                onReceivedServerTrustAuthRequest:(_c, challenge) async{
+                  return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
                 }
 
-                return NavigationActionPolicy.ALLOW;
-              },
-              onReceivedError:(c, request, error){
-                if(request.url.toString().contains('geo:')){
-                  List<dynamic> list = request.url.toString().replaceAll('geo:', '').trim().split(',');
-                  openMapsSheet(context, parse(list[2]).toString(), double.parse(list[0]), double.parse(list[1]));
-                  c.goBack();
-                }
-              },
-              onReceivedHttpError:(c, request, error){
-                if(request.url.toString().contains('geo:')){
-                  List<dynamic> list = request.url.toString().replaceAll('geo:', '').trim().split(',');
-                  openMapsSheet(context, parse(list[2]).toString(), double.parse(list[0]), double.parse(list[1]));
-                  c.goBack();
-                }
-              },
-              onLoadStop: (c, uri){
-                 setState(() {
-                   isLoading=false;
-                 });
-                 if(uri.toString().contains('geo:')){
-                   List<dynamic> list = uri.toString().replaceAll('geo:', '').trim().split(',');
-                   openMapsSheet(context, parse(list[2]).toString(), double.parse(list[0]), double.parse(list[1]));
-                   c.goBack();
-                 }
-              },
-              onReceivedServerTrustAuthRequest:(_c, challenge) async{
-                return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
-              }
 
-
+            ),
           ),
         ),
       ),
